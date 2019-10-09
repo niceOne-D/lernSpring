@@ -1,12 +1,20 @@
 package com.tutorialspoint;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class MainApp {
     public static void main(String[] args) {
-        XmlBeanFactory factory = new XmlBeanFactory
-                (new ClassPathResource("Beans.xml"));
-        HelloWorld obj = (HelloWorld) factory.getBean("helloWorld");
-        obj.getMessage();
+        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+
+        HelloWorld objA = (HelloWorld) context.getBean("helloWorld");
+
+        objA.getMessage1();
+        objA.getMessage2();
+
+        HelloIndia objB = (HelloIndia) context.getBean("helloIndia");
+        objB.getMessage1();
+        objB.getMessage2();
+        objB.getMessage3();
     }
 }
